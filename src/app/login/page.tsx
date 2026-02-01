@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useLogin } from '@/features/auth/useLogin';
-import DemoCredentialsPopover from './DemoCredentialsPopover';
+import DemoCredentialsPopover from '../../components/DemoCredentialsPopover';
 import styles from './page.module.scss';
 
 export default function LoginPage() {

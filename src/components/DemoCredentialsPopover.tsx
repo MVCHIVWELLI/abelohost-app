@@ -1,8 +1,8 @@
 'use client';
 
-import Popover from '@/components/ui/Popover';
-import { useDemoCredentials } from './useDemoCredentials';
-import styles from './page.module.scss';
+import Popover from '@/components/ui/common/Popover';
+import { useDemoCredentials } from '../features/auth/useDemoCredentials';
+import styles from '../app/login/page.module.scss';
 
 type DemoCredentialsPopoverProps = {
   isOpen: boolean;
