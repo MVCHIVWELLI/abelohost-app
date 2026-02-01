@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { useAuthStore } from '@/features/auth/auth.store';
+import api from '@/lib/axios';
 import type { AuthUser } from '@/types/auth';
 
 type AuthProviderProps = {
@@ -30,9 +31,8 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
     const loadSession = async () => {
       try {
-        const response = await fetch('/api/auth/me');
-        if (!response.ok) return;
-        const data = (await response.json()) as { user: unknown };
+        const response = await api.get<{ user: unknown }>('/api/auth/me', { baseURL: '' });
+        const data = response.data;
         if (isMounted && isAuthUser(data.user)) {
           setUser(data.user);
         }

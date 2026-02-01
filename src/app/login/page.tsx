@@ -28,18 +28,13 @@ export default function LoginPage() {
               ?
             </button>
           </div>
-          <DemoCredentialsPopover
-            isOpen={isPopoverOpen}
-            onClose={() => setPopoverOpen(false)}
-          />
+          <DemoCredentialsPopover isOpen={isPopoverOpen} onClose={() => setPopoverOpen(false)} />
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.fieldWithPopover}>
             <label className={styles.field}>
-              <span className={styles.fieldHeader}>
-                <span>Username</span>
-              </span>
+              <span className={styles.fieldHeader}></span>
               <input
                 type="text"
                 name="username"
@@ -54,13 +49,12 @@ export default function LoginPage() {
           </div>
 
           <label className={styles.field}>
-            {/* <span>Password</span> */}
             <input
               type="password"
               name="password"
               value={form.password}
               onChange={handleChange('password')}
-              placeholder="••••••••"
+              placeholder="password"
               autoComplete="current-password"
               disabled={isSubmitting}
             />

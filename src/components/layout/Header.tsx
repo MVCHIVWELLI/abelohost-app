@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/features/auth/useAuth';
 import { useAuthStore } from '@/features/auth/auth.store';
+import api from '@/lib/axios';
 import styles from './Header.module.scss';
 
 export default function Header() {
@@ -12,7 +13,7 @@ export default function Header() {
   const clear = useAuthStore((state) => state.clear);
 
   const handleLogout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' });
+    await api.post('/api/auth/logout', null, { baseURL: '' });
     clear();
     router.push('/login');
   };
