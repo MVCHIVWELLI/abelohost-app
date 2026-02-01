@@ -1,23 +1,27 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import axios from 'axios';
 import type { LoginRequest, LoginResponse, AuthUser } from '@/types/auth';
 import { AUTH_COOKIE_NAME, authCookieOptions } from '@/app/api/auth/login/authCookie';
+import api from '@/lib/axios';
 
 export async function POST(request: NextRequest) {
   const payload = (await request.json()) as LoginRequest;
 
-  const response = await fetch('https://dummyjson.com/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
-
-  if (!response.ok) {
-    const data = await response.json().catch(() => ({}));
-    return NextResponse.json(data, { status: response.status });
+  let data: LoginResponse;
+  try {
+    const response = await api.post<LoginResponse>('auth/login', payload, {
+    });
+    data = response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status ?? 500;
+      const errorData = error.response?.data ?? {};
+      return NextResponse.json(errorData, { status });
+    }
+    throw error;
   }
 
-  const data = (await response.json()) as LoginResponse;
   const token = data.accessToken ?? data.token ?? '';
 
   if (!token) {

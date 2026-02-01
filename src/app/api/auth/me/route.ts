@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import api from '@/lib/axios';
 import type { AuthUser } from '@/types/auth';
 import { AUTH_COOKIE_NAME } from '@/app/api/auth/login/authCookie';
 
@@ -13,17 +14,13 @@ export async function GET() {
     return NextResponse.json({ message: 'Unauthenticated' }, { status: 401 });
   }
 
-  const response = await fetch('https://dummyjson.com/auth/me', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!response.ok) {
+  let data: DummyMeResponse;
+  try {
+    const response = await api.get<DummyMeResponse>('auth/me');
+    data = response.data;
+  } catch {
     return NextResponse.json({ message: 'Session invalid' }, { status: 401 });
   }
-
-  const data = (await response.json()) as DummyMeResponse;
   const user: AuthUser = {
     id: data.id,
     username: data.username,
