@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "format": "prettier --write .",
+    "lint:css": "stylelint \"**/*.{css,scss,sass}\""
   },
   "dependencies": {
     "next": "16.1.6",

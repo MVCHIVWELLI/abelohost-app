@@ -1,0 +1,158 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.hero {
+  display: grid;
+  gap: 12px;
+  padding: 32px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #f8fafc;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.2);
+}
+
+.kicker {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #a5b4fc;
+}
+
+.title {
+  font-size: clamp(28px, 3vw, 40px);
+  margin: 0;
+}
+
+.subtitle {
+  max-width: 520px;
+  color: #cbd5f5;
+}
+
+.content {
+  display: grid;
+  gap: 16px;
+}
+
+.state {
+  padding: 24px;
+  border-radius: 16px;
+  background: #f1f5f9;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.stateError {
+  padding: 24px;
+  border-radius: 16px;
+  background: #fee2e2;
+  color: #991b1b;
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.skeletonCard {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+.skeletonImageWrap {
+  background: #f8fafc;
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  height: 180px;
+}
+
+.skeletonImage {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #e2e8f0, #f8fafc, #e2e8f0);
+  background-size: 240% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+.skeletonMeta,
+.skeletonTitle,
+.skeletonPrice,
+.skeletonButton {
+  border-radius: 999px;
+  background: linear-gradient(90deg, #e2e8f0, #f8fafc, #e2e8f0);
+  background-size: 240% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+.skeletonBody {
+  display: grid;
+  gap: 8px;
+}
+
+.skeletonFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.skeletonMeta {
+  height: 10px;
+  width: 45%;
+}
+
+.skeletonTitle {
+  height: 14px;
+  width: 85%;
+  border-radius: 10px;
+}
+
+.skeletonPrice {
+  height: 18px;
+  width: 60px;
+}
+
+.skeletonButton {
+  height: 32px;
+  width: 90px;
+  border-radius: 12px;
+}
+
+@media (max-width: 640px) {
+  .skeletonCard {
+    padding: 14px;
+  }
+
+  .skeletonImageWrap {
+    height: 160px;
+  }
+
+  .skeletonTitle {
+    width: 100%;
+  }
+
+  .skeletonButton {
+    width: 80px;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
