@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import API from '@/lib/axios';
+import api from '@/lib/axios';
 import type { Product, ProductsResponse } from '@/types/product';
 import ProductCard from '@/components/product/ProductCard';
 import { useAuth } from '@/features/auth/useAuth';
@@ -22,7 +22,7 @@ export default function HomePage() {
       setLoading(true);
       setError(null);
       try {
-        const { data } = await API.get<ProductsResponse>(`/products?limit=${PRODUCTS_LIMIT}`);
+        const { data } = await api.get<ProductsResponse>(`/products?limit=${PRODUCTS_LIMIT}`);
         if (isMounted) {
           setProducts(data.products);
         }

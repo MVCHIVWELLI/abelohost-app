@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import type { AuthUser } from '@/types/auth';
-import { AUTH_COOKIE_NAME } from '@/lib/authCookie';
+import { AUTH_COOKIE_NAME } from '@/app/api/auth/login/authCookie';
 
 type DummyMeResponse = AuthUser;
 

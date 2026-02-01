@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import type { LoginRequest, LoginResponse, AuthUser } from '@/types/auth';
-import { AUTH_COOKIE_NAME, authCookieOptions } from '@/lib/authCookie';
+import { AUTH_COOKIE_NAME, authCookieOptions } from '@/app/api/auth/login/authCookie';
 
 export async function POST(request: NextRequest) {
   const payload = (await request.json()) as LoginRequest;
