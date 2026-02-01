@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import type { ReactNode } from 'react';
+import axios from 'axios';
 import { useAuthStore } from '@/features/auth/auth.store';
 import api from '@/lib/axios';
 import type { AuthUser } from '@/types/auth';
@@ -36,6 +37,11 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         if (isMounted && isAuthUser(data.user)) {
           setUser(data.user);
         }
+      } catch (error) {
+        if (axios.isAxiosError(error) && error.response?.status === 401) {
+          return;
+        }
+        console.error('Failed to load session', error);
       } finally {
         if (isMounted) {
           setHydrated();
