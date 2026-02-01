@@ -52,7 +52,7 @@ export function useLogin() {
   }, []);
 
   const handleChange = useCallback(
-    (field: keyof FormState) => (event: ChangeEvent<HTMLInputElement>) => {
+    (field: keyof FormState) => (event: React.ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value;
       setForm((prev) => ({ ...prev, [field]: value }));
       setErrors((prev) => ({ ...prev, [field]: undefined }));
@@ -61,7 +61,7 @@ export function useLogin() {
   );
 
   const handleSubmit = useCallback(
-    async (event: FormEvent<HTMLFormElement>) => {
+    async (event: React.SyntheticEvent<HTMLFormElement>) => {
       event.preventDefault();
       const validation = validate(form);
       setErrors(validation);
